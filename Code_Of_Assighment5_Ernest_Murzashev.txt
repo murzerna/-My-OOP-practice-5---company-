@@ -1,0 +1,220 @@
+package krc;
+
+import java.util.Scanner;
+import java.lang.ArrayIndexOutOfBoundsException;
+import java.io.FileNotFoundException;
+
+//IN THE CRITERIA TO THE TASK, IT WAS SAID THAT WORK WITH THE CONSOLE SHOULD BE MINIMIZED,
+//THEREFORE I DIDN'T CONNECT THE SCANNER, BUT THE SCANNER CAN BE CONNECTED AT
+//ANY TIME AND HAVE AN AUTOMATIC POWER SUPPLY SYSTEM
+
+public class Main {
+
+    DB db= new DB();
+
+    public static class Share {
+        public double share_of_employees_in_project;
+
+        public Share(double share_of_employees_in_project){
+            this.share_of_employees_in_project= share_of_employees_in_project;
+        }
+    }
+
+    public static double FuncShare(int salary_of_position){
+        double share_of_employees_in_project = salary_of_position *  0.6;
+        return share_of_employees_in_project;
+    }
+
+    public static class Position {
+        public String position_of_employee;
+
+        public Position (String position_of_employee){
+            this.position_of_employee= position_of_employee;
+        }
+
+    }
+
+    public static class Salary extends Position{
+        public int salary_of_position;
+
+        public Salary(String position_of_employee, int salary_of_position){
+            super (position_of_employee);
+            this.salary_of_position=salary_of_position;
+        }
+    }
+
+    public static class Experience extends Salary{
+        public int employee_experience_in_years;
+
+        public Experience(String position_of_employee, int salary_of_position, int employee_experience_in_years){
+            super(position_of_employee, salary_of_position);
+            this.employee_experience_in_years= employee_experience_in_years;
+        }
+
+        public int setExp(int YEARS){
+            return YEARS;
+        }
+        public int getExp(){
+            if (employee_experience_in_years<0){
+                return 0;
+            }
+            else{
+                return employee_experience_in_years;
+            }
+        }
+    }
+
+    public class Project{
+
+    }
+
+    public static void main(String [] args) {
+        Position pos1 = new Position("Junior programmer");
+        Position pos2 = new Position("Senior programmer");
+        Position pos3 = new Position("Junior designer");
+        Position pos4 = new Position("Senior designer");
+        Position pos5 = new Position("General director");
+        Position pos6 = new Position("Department director");
+        Position pos7 = new Position("Accountants");
+        Position pos8 = new Position("Cleaners");
+        pos1.position_of_employee ="Junior programmer";
+        pos2.position_of_employee ="Senior programmer";
+        pos3.position_of_employee ="Junior designer";
+        pos4.position_of_employee ="Senior designer";
+        pos5.position_of_employee ="General director";
+        pos6.position_of_employee ="Department director";
+        pos7.position_of_employee ="Accountants";
+        pos8.position_of_employee ="Cleaners";
+
+        String arrPos[]= new String[]{pos1.position_of_employee, pos2.position_of_employee,pos3.position_of_employee,
+                pos4.position_of_employee,pos5.position_of_employee,pos6.position_of_employee,pos7.position_of_employee,
+                pos8.position_of_employee};
+
+        for (int i=0; i<8; i++){
+            System.out.println("Position" + (i+1) +" is "+arrPos[i]);
+        }
+
+        System.out.println("------------------------------------------");
+
+
+        Salary sal1 = new Salary("Junior programmer", 60000);
+        Salary sal2 = new Salary("Senior programmer", 100000);
+        Salary sal3 = new Salary("Junior designer",50000);
+        Salary sal4 = new Salary("Senior designer",80000);
+        Salary sal5 = new Salary("General director",600000);
+        Salary sal6 = new Salary("Department director",250000);
+        Salary sal7 = new Salary("Accountants", 40000);
+        Salary sal8 = new Salary("Cleaners",25000);
+        sal1.salary_of_position =60000;
+        sal2.salary_of_position =100000;
+        sal3.salary_of_position =50000;
+        sal4.salary_of_position =80000;
+        sal5.salary_of_position =600000;
+        sal6.salary_of_position =250000;
+        sal7.salary_of_position =40000;
+        sal8.salary_of_position =25000;
+
+        double arrSal[]= new double[] {sal1.salary_of_position, sal2.salary_of_position, sal3.salary_of_position,
+                sal4.salary_of_position, sal5.salary_of_position, sal6.salary_of_position, sal7.salary_of_position,
+                sal8.salary_of_position};
+
+        for (int i=0; i<8; i++){
+            System.out.println("Position" + (i+1) +" is "+arrPos[i] + " & "+ "SalaryOfEmp" + (i+1) + " = "+ arrSal[i]);
+        }
+        //for (int j=0; j<7; j++){
+          //  System.out.println("Position" + (j+1) +" is "+arrPos[j]);
+        //}
+
+        System.out.println("------------------------------------------");
+
+        Experience exp1 = new Experience("Junior programmer", 60000, 2);
+        Experience exp2 = new Experience("Senior programmer", 100000,5);
+        Experience exp3 = new Experience("Junior designer",50000,1);
+        Experience exp4 = new Experience("Senior designer",80000,3);
+        Experience exp5 = new Experience("General director",600000,15);
+        Experience exp6 = new Experience("Department director",250000,8);
+        Experience exp7 = new Experience("Accountants", 40000,4);
+        Experience exp8 = new Experience("Cleaners",25000,0);
+        exp1.employee_experience_in_years =2;
+        exp2.employee_experience_in_years =5;
+        exp3.employee_experience_in_years =1;
+        exp4.employee_experience_in_years =3;
+        exp5.employee_experience_in_years =15;
+        exp6.employee_experience_in_years =8;
+        exp7.employee_experience_in_years =4;
+        exp8.employee_experience_in_years =0;
+
+        System.out.println(sal1.position_of_employee + " earn " + sal1.salary_of_position + " ruble and he/she works "+ exp1.employee_experience_in_years + " years");
+
+        double arrExp[]= new double[] {exp1.employee_experience_in_years, exp2.employee_experience_in_years, exp3.employee_experience_in_years,
+                exp4.employee_experience_in_years, exp5.employee_experience_in_years, exp6.employee_experience_in_years, exp7.employee_experience_in_years,
+                exp8.employee_experience_in_years};
+
+        for (int i=0; i<8; i++){
+            System.out.println("Position" + (i+1) +" is "+arrPos[i] + " & SalaryOfEmp" + (i+1) + " = "+ arrSal[i]+" & experience = "+ arrExp[i]+ "years");
+        }
+
+        Share sh1 = new Share(sal1.salary_of_position*0.6);
+        Share sh2 = new Share(sal2.salary_of_position*0.6);
+        Share sh3 = new Share(sal3.salary_of_position*0.6);
+        Share sh4 = new Share(sal4.salary_of_position*0.6);
+        Share sh5 = new Share(sal5.salary_of_position*0.6);
+        Share sh6 = new Share(sal6.salary_of_position*0.6);
+        Share sh7 = new Share(sal7.salary_of_position*0.6);
+        Share sh8 = new Share(sal8.salary_of_position*0.6);
+        sh1.share_of_employees_in_project =sal1.salary_of_position*0.6;
+        sh2.share_of_employees_in_project =sal2.salary_of_position*0.6;
+        sh3.share_of_employees_in_project =sal3.salary_of_position*0.6;
+        sh4.share_of_employees_in_project =sal4.salary_of_position*0.6;
+        sh5.share_of_employees_in_project =sal5.salary_of_position*0.6;
+        sh6.share_of_employees_in_project =sal6.salary_of_position*0.6;
+        sh7.share_of_employees_in_project =sal7.salary_of_position*0.6;
+        sh8.share_of_employees_in_project =sal8.salary_of_position*0.6;
+
+
+        System.out.println("------------------------------------------");
+        System.out.println("Checking the method FuncShare for calculating the share of an employee for the project, ");
+        System.out.println("that is, the cost of its implementation, this is 60% of the salary received");
+        System.out.println("For first employee: "+ FuncShare(sal1.salary_of_position));
+        System.out.println("------------------------------------------");
+
+        double arrSh[]= new double[] {sh1.share_of_employees_in_project, sh2.share_of_employees_in_project, sh3.share_of_employees_in_project,
+                sh4.share_of_employees_in_project, sh5.share_of_employees_in_project, sh6.share_of_employees_in_project, sh7.share_of_employees_in_project};
+
+
+        for (int i=0; i<7; i++){
+            System.out.println("Employee" + (i+1) +"'s share from project= "+arrSh[i]);
+        }
+
+        System.out.println("------------------------------------------");
+        double sum=0;
+        for (int i=0; i<arrSh.length; i++){
+            sum= sum+arrSh[i];
+        }
+        System.out.println("The total cost of the project= "+sum);
+    }
+}
+
+
+
+
+
+package krc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DB{
+    public Connection getConnection() throws SQLException, ClassNotFoundException {
+        String connectionUrl = "jdbc:postgresql://localhost:5432/postgres";
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection con = DriverManager.getConnection(connectionUrl, "postgres", "petrovpetr742");
+            return con;
+        } catch (ClassNotFoundException e){
+            System.out.println(e);
+            return null;
+        }
+    }
+}
